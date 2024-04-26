@@ -1,0 +1,17 @@
+name: Custom Workflow
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  generate_release_notes:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Generate release notes
+        run: |
+          echo "Generating release notes..."
