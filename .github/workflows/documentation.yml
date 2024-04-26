@@ -3,11 +3,11 @@ name: Documentation Generation
 on:
   push:
     branches:
-      - main   
+      - main  
 
-jobs: 
+jobs:
   generate-docs:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -18,15 +18,12 @@ jobs:
 
       - name: Generate documentation
         run: |
-          npx jsdoc-to-markdown ./src/satellite.js > ./src/documentation.md 
+          npx jsdoc-to-markdown ./src/utils.js > ./docs.md
 
-      - name: Check for changes or create Markdown file
-        run: |
-          git diff --exit-code || touch ./src/documentation.md
+      - name: Pull changes from main branch
+        run: git pull origin main
 
       - name: Commit and push changes
-        if: steps.commit_changes.outputs.changed == 'true'
-        id: commit_changes
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
@@ -34,3 +31,9 @@ jobs:
           git commit -m "Update documentation"
           git push origin main
 
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
