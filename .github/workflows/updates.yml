@@ -1,0 +1,29 @@
+name: Dependency Updates
+
+on:
+  schedule:
+   
+    - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Dependabot updates
+        uses: github/dependabot-action@v2
+        with:
+  
+          package-manager: auto
+         
+          schedule: daily
+         
+          versioning-strategy: increase
+         
+          commit-message: 'chore: Update dependencies'
