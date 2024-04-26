@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node run.js",
     "generate-docs": "jsdoc -r ./src -d ./docs",
-    "test": "jest", 
+    "test": "jest",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -30,5 +30,8 @@
   "homepage": "https://github.com/PKUPI/heavens-above#readme",
   "engines": {
     "node": ">=12.10.0"
+  },
+  "devDependencies": {
+    "jsdoc-to-markdown": "^8.0.1"
   }
 }
