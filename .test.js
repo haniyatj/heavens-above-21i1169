@@ -7,7 +7,7 @@ describe('Satellite Table Functionality', () => {
     root: './data/',
     pages: 2
   };
-
+ 
   // Test case for getTable function
   test('getTable fetches satellite pass data and processes it', () => {
     // Mocking the database and counter
