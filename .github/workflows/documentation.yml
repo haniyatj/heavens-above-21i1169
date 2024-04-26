@@ -3,7 +3,7 @@ name: Documentation Generation
 on:
   push:
     branches:
-      - main  
+      - main   
 
 jobs: 
   generate-docs:
