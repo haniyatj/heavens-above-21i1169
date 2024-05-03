@@ -1,8 +1,9 @@
 name: Custom Workflow
 
 on:
-  pull_request:
-    types: [closed]
+  push:
+  braches:
+    - main
 
 jobs:
   generate_release_notes:
