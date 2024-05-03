@@ -1,38 +1,23 @@
-name: Code Review Workflow
+name: CodeQL Analysis
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - main
 
 jobs:
-  code_review:
+  build:
+
     runs-on: ubuntu-latest
-    
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        languages: "javascript"
         
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-          
-      - name: Install dependencies
-        run: |
-          echo "Installing dependencies..."
-          npm install
-        
-      - name: Run ESLint for code analysis
-        run: |
-          echo "Running ESLint for code analysis..."
-          npm run lint
-        
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v1
-        with:
-          languages: "javascript"
-          
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v1
-        with:
-          echo "Performing CodeQL Analysis..."
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
