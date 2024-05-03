@@ -1,5 +1,4 @@
-
-name: Code Review
+name: Code Review Workflow
 
 on:
   pull_request:
@@ -9,7 +8,7 @@ jobs:
   code_review:
     runs-on: ubuntu-latest
     
-    steps: 
+    steps:
       - name: Checkout code
         uses: actions/checkout@v2
         
@@ -19,17 +18,21 @@ jobs:
           node-version: '14'
           
       - name: Install dependencies
-        run: npm install
+        run: |
+          echo "Installing dependencies..."
+          npm install
         
-      - name: Run code analysis
-        run: npm run analyze-code
+      - name: Run ESLint for code analysis
+        run: |
+          echo "Running ESLint for code analysis..."
+          npm run lint
         
-      - name: Check for vulnerabilities
-        run: npm audit --json | npm-audit-html > audit-report.html
-        
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
         with:
-          name: audit-report
-          path: audit-report.html
-
+          languages: "javascript"
+          
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
+        with:
+          echo "Performing CodeQL Analysis..."
