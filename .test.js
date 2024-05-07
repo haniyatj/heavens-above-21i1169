@@ -9,15 +9,15 @@ describe('Satellite Table Functionality', () => {
   };
  
   // Test case for getTable function
-  test('getTable fetches satellite pass data and processes it', () => {
+  test('getTable fetches satellite pass data and processes it', async () => {
     // Mocking the database and counter
     const database = [];
     const counter = 0;
     const opt = 0;
 
     // Calling the getTable function with mock parameters
-    getTable({ ...config, database, counter, opt });
-
+    await getTable({ ...config, database, counter, opt });
  
+    // Add assertions as needed to verify the behavior of getTable function
   });
 });
