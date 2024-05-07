@@ -1,4 +1,4 @@
-const getTable = require('./satellite'); // Assuming the file is named satellite.js
+const getTable = require('./src/satellite'); // Assuming the file is named satellite.js
 const fs = require('fs').promises; // Using promises for file system interactions
 
 jest.mock('request'); // Mocking request library for controlled responses
