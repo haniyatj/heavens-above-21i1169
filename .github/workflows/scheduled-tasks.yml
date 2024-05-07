@@ -2,7 +2,10 @@ name: Scheduled Tasks
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Run daily at midnight UTC
+    - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
 
 jobs:
   maintenance:
@@ -15,3 +18,9 @@ jobs:
       - name: Run maintenance script
         run: |
           echo "Running maintenance tasks..."
+          sudo apt-get update
+          sudo apt-get upgrade -y
+          find "C:\Users\haniy\Desktop\semester6\scd\21i-1169-ass3\heavens-above-21i1169" -type f -name "*.log" -delete
+
+
+
