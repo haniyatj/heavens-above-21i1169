@@ -20,7 +20,7 @@ jobs:
           echo "Running maintenance tasks..."
           sudo apt-get update
           sudo apt-get upgrade -y
-          find "C:\Users\haniy\Desktop\semester6\scd\21i-1169-ass3\heavens-above-21i1169" -type f -name "*.log" -delete
+          # find "C:\Users\haniy\Desktop\semester6\scd\21i-1169-ass3\heavens-above-21i1169" -type f -name "*.log" -delete
 
 
 
